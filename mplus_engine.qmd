@@ -1,0 +1,26 @@
+<!-- Mplus engine -->
+<!-- Users may need to replace "/Applications/Mplus/mplus" with the -->
+<!-- path to their own Mplus executable -->
+```{r}
+#| label: MplusEngine updated 2025-09-06
+#| echo: false
+#| output: false
+knitr::knit_engines$set(mplus = function(options) {
+  code <- paste(options$code, collapse = "\n")
+  fileConn <- file("formplus.inp")
+  writeLines(code, fileConn)
+  close(fileConn)
+  system2("/Applications/Mplus/mplus", "formplus.inp")
+  # read Mplus .out
+  mplusOutput <- readLines("formplus.out", warn = FALSE)
+  # <<< key trick: emit output as a fenced code block >>>
+  rendered_out <- paste0(
+    "```{.mplus .numberLines}\n",
+    paste(mplusOutput, collapse = "\n"),
+    "\n```"
+  )
+  options$results <- 'asis'   # <- crucial: don't escape, let markdown render
+  knitr::engine_output(options, code, rendered_out)
+})
+```
+<!-- have a nice day -->
