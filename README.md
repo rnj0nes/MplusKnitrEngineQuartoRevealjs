@@ -53,6 +53,14 @@ knitr::knit_engines$set(mplus = function(options) {
 
 **Reminder:** If Mplus lives elsewhere, change the `system2()` call to the correct path.
 
+
+Include the engine in your slide show QMD with
+
+```
+{{< include mplus_engine.qmd >}}
+```
+
+
 ---
 
 ## 2) Document / Project YAML
