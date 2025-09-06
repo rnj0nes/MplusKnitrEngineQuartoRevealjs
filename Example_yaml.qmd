@@ -1,0 +1,25 @@
+<!-- Example_yaml.qmd -->
+---
+title: "Dual Change Score Model"
+title-slide-attributes:
+  data-background-image: lvmworkshop2012swirlbw.png
+  data-background-size: contain
+  data-background-opacity: "1"
+author: "Rich Jones"
+date: 2025-09-04
+format: 
+  revealjs:
+    theme: white
+    slide-number: true
+    logo: logo-lvmworkshop-footer-2024-01-22.png
+    self-contained: true
+    code-copy: true
+    code-line-numbers: true
+    css: mplus-output.css
+    fig-align: center
+filters:
+  - default-code-lang.lua
+editor: source
+---
+
+{{< include mplus_engine.qmd >}}

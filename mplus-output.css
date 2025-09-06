@@ -1,0 +1,65 @@
+/* =========================
+   Quarto reveal.js — Mplus & non-R code blocks
+   ========================= */
+
+/* Tunables */
+:root{
+  --mplus-visible-lines: 30;  /* change to 25, 35, etc. */
+  --mplus-lh: 1.0 ;           /* line-height used for code; tweak 1.40–1.50 if needed */
+}
+
+/* Gray band + scroll container (Mplus + any non-R block) */
+.reveal div.sourceCode:has(> pre.sourceCode.mplus),
+.reveal div.sourceCode:has(> pre.sourceCode):not(:has(> pre.sourceCode.r)) {
+  background: #f7f7f7;
+  border: 1px solid #cfcfcf;
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;    /* fixes missing right buffer */
+  box-sizing: border-box;
+  line-height: var(--mplus-lh);
+  /* Prefer the modern 'lh' unit; keep an em fallback for safety */
+  max-height: calc(var(--mplus-visible-lines) * 1lh + 1rem) !important;
+  max-height: calc(var(--mplus-visible-lines) * var(--mplus-lh) * 1em + 1rem) !important;
+  overflow: auto;
+  margin-top: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Make scrollbars obvious (Chromium/WebKit) */
+.reveal div.sourceCode:has(> pre.sourceCode.mplus)::-webkit-scrollbar,
+.reveal div.sourceCode:has(> pre.sourceCode):not(:has(> pre.sourceCode.r))::-webkit-scrollbar { width: 10px; }
+.reveal div.sourceCode:has(> pre.sourceCode.mplus)::-webkit-scrollbar-track,
+.reveal div.sourceCode:has(> pre.sourceCode):not(:has(> pre.sourceCode.r))::-webkit-scrollbar-track { background: #e8e8e8; }
+.reveal div.sourceCode:has(> pre.sourceCode.mplus)::-webkit-scrollbar-thumb,
+.reveal div.sourceCode:has(> pre.sourceCode):not(:has(> pre.sourceCode.r))::-webkit-scrollbar-thumb {
+  background-color: #666; border-radius: 6px; border: 2px solid #e8e8e8;
+}
+/* Firefox scrollbar */
+.reveal div.sourceCode:has(> pre.sourceCode.mplus),
+.reveal div.sourceCode:has(> pre.sourceCode):not(:has(> pre.sourceCode.r)) {
+  scrollbar-color: #666 #e8e8e8;  /* thumb, track */
+  scrollbar-width: thin;
+}
+
+/* Keep copy button off the border & visible */
+.reveal pre.sourceCode.code-with-copy {
+  position: relative;
+  padding-right: 2.4rem !important;  /* ensures right gutter even with the button */
+  box-sizing: border-box;
+}
+.reveal pre.sourceCode.code-with-copy > .code-copy-button {
+  position: absolute; top: 0.4rem; right: 0.6rem;
+  opacity: 1; filter: none;
+}
+
+/* Use the same line-height inside the code content */
+.reveal pre.sourceCode.mplus,
+.reveal pre.sourceCode.mplus code.sourceCode,
+.reveal pre.sourceCode:not(.r),
+.reveal pre.sourceCode:not(.r) code.sourceCode {
+  line-height: var(--mplus-lh);
+}
+
+/* Optional: add a bit of left gutter when Quarto numbers lines on slides */
+/* Uncomment if your theme removes it and you want it back */
+/* .reveal pre.numberSource { padding-left: 0.6rem !important; } */
